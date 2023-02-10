@@ -17,6 +17,10 @@ git branch -r --list
 
 if [ -z "$(git branch -r --list origin/$mrgbranch)" ]; then
     # this branch doesn't exist
+
+    # Switch to main first, because we might have dstbranch checked out
+    echo Switching to $srcbranch
+    git checkout "$srcbranch"
     
     echo Fetching $dstbranch
     git fetch origin "$dstbranch":"$dstbranch"
