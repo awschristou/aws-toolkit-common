@@ -1,0 +1,39 @@
+name: Testing Merge
+on:
+    push:
+        branches: [master]
+
+env:
+    GH_TOKEN: ${{ github.token }}
+
+jobs:
+    mergeToDev:
+        name: Merge to Dev
+        runs-on: ubuntu-latest
+        permissions:
+          contents: write
+          pull-requests: write
+        steps:
+            - name: Get Code
+              uses: actions/checkout@v3
+              with:
+                fetch-depth: 0
+            - name: Create a merge PR
+              uses: ./.github/actions/create-merge-pr
+              with:
+                source-branch: master
+                destination-branch: dev
+                merge-branch: automerge/bee
+
+            # - name: Merge to dev
+            #   id: devMerge
+            #   run: |
+            #     git checkout dev
+            #     git merge master
+            #     TODO Push
+            # # We might need to find a way to look for an existing PR to avoid duplicates
+            # - name: Create PR
+            #   if: ${{ failure() && steps.devMerge.conclusion == 'failure' }}
+            #   run: |
+            #     gh pr create --base autoMerge/dev --body TODO-or--body-file --head master --title TODO
+
