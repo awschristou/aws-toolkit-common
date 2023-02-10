@@ -2,11 +2,7 @@
 
 set -e
 
-# git config --global user.name "${GITHUB_ACTOR}"
-# git config --global user.email "${GITHUB_ACTOR}"
 git config --global --add safe.directory /github/workspace
-
-echo "Hello world"
 
 srcbranch=$1
 dstbranch=$2
