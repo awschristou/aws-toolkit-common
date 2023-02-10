@@ -1,0 +1,20 @@
+# action.yml
+name: 'Create Merge PR'
+description: 'its my custom action'
+inputs:
+  source-branch:
+    description: 'Branch to merge from'
+    required: true
+  destination-branch:
+    description: 'Branch to merge to'
+    required: true
+  merge-branch:
+    description: 'Branch to park the merge in'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.source-branch }}
+    - ${{ inputs.destination-branch }}
+    - ${{ inputs.merge-branch }}
