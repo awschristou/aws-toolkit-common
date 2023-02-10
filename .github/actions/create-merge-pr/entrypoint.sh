@@ -12,8 +12,6 @@ srcbranch=$1
 dstbranch=$2
 mrgbranch=$3
 
-title="Merge $srcbranch into $dstbranch"
-
 echo source $srcbranch
 echo destination $dstbranch
 echo mergeto $mrgbranch
@@ -55,3 +53,11 @@ else
 fi
 
 # Make PR if it doesn't exist
+
+if $(gh pr list --base $dstbranch --head $dstbranch --json id) | grep -q '\[\]'; then
+    prTitle="Merge $srcbranch into $dstbranch"
+    prBody="Automatic merge failed due to conflicts - Manual resolution is required"
+
+    gh pr create --base $dstbranch --head $mrgbranch --body $prBody --title $prTitleelse
+    echo "There is already a PR for this automerge"
+fi
