@@ -23,9 +23,6 @@ git branch --list
 if [ -z "$(git branch --list $mrgbranch)" ]; then
     # this branch doesn't exist
     
-    echo Fetching $srcbranch
-    git fetch origin $srcbranch:$srcbranch
-
     echo Fetching $dstbranch
     git fetch origin $dstbranch:$dstbranch
 
