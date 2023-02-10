@@ -18,6 +18,8 @@ echo source $srcbranch
 echo destination $dstbranch
 echo mergeto $mrgbranch
 
+git branch --list
+
 if [ -z "$(git branch --list $mrgbranch)" ]; then
     # this branch doesn't exist
     
