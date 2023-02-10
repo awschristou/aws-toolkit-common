@@ -58,6 +58,7 @@ if gh pr list --base $dstbranch --head $dstbranch --json id | grep -q '\[\]'; th
     prTitle="Merge $srcbranch into $dstbranch"
     prBody="Automatic merge failed due to conflicts - Manual resolution is required"
 
-    gh pr create --base $dstbranch --head $mrgbranch --body $prBody --title $prTitleelse
+    gh pr create --base $dstbranch --head $mrgbranch --body $prBody --title $prTitle
+else
     echo "There is already a PR for this automerge"
 fi
