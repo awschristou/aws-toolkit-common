@@ -54,12 +54,12 @@ fi
 
 # Make PR if it doesn't exist
 
-if gh pr list --base $dstbranch --head $dstbranch --json id | grep -q '\[\]'; then
+if gh pr list --base "$dstbranch" --head "$dstbranch" --json id | grep -q '\[\]'; then
     prTitle="Merge $srcbranch into $dstbranch"
 
     echo "Automatic merge failed due to conflicts - Manual resolution is required" >> pr-body.txt
 
-    gh pr create --base $dstbranch --head $mrgbranch --body-file pr-body.txt --title $prTitle
+    gh pr create --base "$dstbranch" --head "$mrgbranch" --body-file pr-body.txt --title "$prTitle"
 else
     echo "There is already a PR for this automerge"
 fi
