@@ -2,11 +2,7 @@
 
 set -e
 
-# git config --global user.name "${GITHUB_ACTOR}"
-# git config --global user.email "${GITHUB_ACTOR}"
 git config --global --add safe.directory /github/workspace
-
-echo "Hello world"
 
 srcbranch=$1
 dstbranch=$2
@@ -21,6 +17,10 @@ git branch -r --list
 
 if [ -z "$(git branch -r --list origin/$mrgbranch)" ]; then
     # this branch doesn't exist
+
+    # Switch to main first, because we might have dstbranch checked out
+    echo Switching to $srcbranch
+    git checkout "$srcbranch"
     
     echo Fetching $dstbranch
     git fetch origin "$dstbranch":"$dstbranch"
