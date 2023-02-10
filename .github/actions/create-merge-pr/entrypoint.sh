@@ -54,7 +54,7 @@ fi
 
 # Make PR if it doesn't exist
 
-if $(gh pr list --base $dstbranch --head $dstbranch --json id) | grep -q '\[\]'; then
+if gh pr list --base $dstbranch --head $dstbranch --json id | grep -q '\[\]'; then
     prTitle="Merge $srcbranch into $dstbranch"
     prBody="Automatic merge failed due to conflicts - Manual resolution is required"
 
