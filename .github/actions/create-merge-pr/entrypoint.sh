@@ -54,6 +54,8 @@ fi
 
 # Make PR if it doesn't exist
 
+if gh pr list --base "$dstbranch" --head "$dstbranch" --state open --json number
+
 if gh pr list --base "$dstbranch" --head "$dstbranch" --state open --json number | grep -q 'number'; then
     echo "Creating PR"
     prTitle="Merge $srcbranch into $dstbranch"
