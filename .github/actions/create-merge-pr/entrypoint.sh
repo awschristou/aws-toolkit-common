@@ -39,8 +39,17 @@ if [ -z "$(git branch --list $mrgbranch)" ]; then
     git push --set-upstream origin $mrgbranch
 else
     # Branch is already in progress. Merge src into it
+
+    echo Fetching $mrgbranch
+    git fetch origin $mrgbranch:$mrgbranch
+
+    echo Switching to $mrgbranch
     git checkout $mrgbranch
-    git merge $dstbranch
+
+    echo Merging in $srcbranch
+    git merge $srcbranch
+
+    echo Pushing...
     git push --set-upstream origin $mrgbranch
 fi
 
