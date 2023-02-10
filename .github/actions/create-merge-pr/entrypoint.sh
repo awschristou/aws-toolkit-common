@@ -18,11 +18,22 @@ echo source $srcbranch
 echo destination $dstbranch
 echo mergeto $mrgbranch
 
+echo Fetching origin
+git fetch origin
+
 if [ -z "$(git branch --list $mrgbranch)" ]; then
     # this branch doesn't exist
+
+    echo Switching to $dstbranch
     git checkout $dstbranch
+
+    echo Creating $mrgbranch
     git checkout -b $mrgbranch
+
+    echo Merging in $srcbranch
     git merge $srcbranch
+
+    echo Pushing...
     git push --set-upstream origin $mrgbranch
 else
     # Branch is already in progress. Merge src into it
