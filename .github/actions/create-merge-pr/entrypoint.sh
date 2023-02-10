@@ -18,9 +18,10 @@ echo source $srcbranch
 echo destination $dstbranch
 echo mergeto $mrgbranch
 
-git branch --list
+echo Branches:
+git branch -r --list
 
-if [ -z "$(git branch --list $mrgbranch)" ]; then
+if [ -z "$(git branch -r --list origin/$mrgbranch)" ]; then
     # this branch doesn't exist
     
     echo Fetching $dstbranch
