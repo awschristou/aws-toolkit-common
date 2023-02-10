@@ -57,8 +57,6 @@ fi
 if gh pr list --base "$dstbranch" --head "$mrgbranch" --state open --json number | grep -q 'number'; then
     echo "There is already a PR for this automerge"
 else
-    rm pr-list.txt
-
     echo "Creating PR"
     prTitle="Merge $srcbranch into $dstbranch"
 
