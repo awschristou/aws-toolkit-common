@@ -23,33 +23,33 @@ if [ -z "$(git branch -r --list origin/$mrgbranch)" ]; then
     # this branch doesn't exist
     
     echo Fetching $dstbranch
-    git fetch origin $dstbranch:$dstbranch
+    git fetch origin "$dstbranch":"$dstbranch"
 
     echo Switching to $dstbranch
-    git checkout $dstbranch
+    git checkout "$dstbranch"
 
     echo Creating $mrgbranch
-    git checkout -b $mrgbranch
+    git checkout -b "$mrgbranch"
 
     echo Merging in $srcbranch
-    git merge $srcbranch
+    git merge "$srcbranch"
 
     echo Pushing...
-    git push --set-upstream origin $mrgbranch
+    git push --set-upstream origin "$mrgbranch"
 else
     # Branch is already in progress. Merge src into it
 
     echo Fetching $mrgbranch
-    git fetch origin $mrgbranch:$mrgbranch
+    git fetch origin "$mrgbranch":"$mrgbranch"
 
     echo Switching to $mrgbranch
-    git checkout $mrgbranch
+    git checkout "$mrgbranch"
 
     echo Merging in $srcbranch
-    git merge $srcbranch
+    git merge "$srcbranch"
 
     echo Pushing...
-    git push --set-upstream origin $mrgbranch
+    git push --set-upstream origin "$mrgbranch"
 fi
 
 # Make PR if it doesn't exist
