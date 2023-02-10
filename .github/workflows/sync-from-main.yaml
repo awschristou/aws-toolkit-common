@@ -1,4 +1,4 @@
-name: Testing Merge
+name: Sync from main to dev
 on:
     push:
         branches: [master]
