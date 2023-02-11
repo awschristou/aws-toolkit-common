@@ -1,7 +1,7 @@
 #!/bin/sh -l
 
 set -e
-
+# here we put a different line of text
 git config --global --add safe.directory /github/workspace
 
 srcbranch=$1
