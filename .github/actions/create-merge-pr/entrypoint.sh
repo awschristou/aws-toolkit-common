@@ -1,7 +1,7 @@
 #!/bin/sh -l
 
 set -e
-
+# Simulate setting up a merge conflict
 git config --global --add safe.directory /github/workspace
 
 srcbranch=$1
