@@ -1,0 +1,14 @@
+version: 0.2
+
+phases:
+    install:
+        runtime-versions:
+            nodejs: 18
+
+    build:
+        commands:
+            - |
+                cd lsp
+                npm install
+                npm run compile
+                npm run test
